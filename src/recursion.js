@@ -4,14 +4,55 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
-var factorial = function(n) {
+var factorial = function(n, output = 1) {
+  //I: function takes one param repped as num and default param 
+  //O: return the product of all positive integers less than or equal to n
+  //C: none
+  //E: return null for negative numbers,
+  //base
+  if(n === 0){
+    return output;
+    };
+  if(n < 0 ){
+    return null;
+  };
+  
+
+// recursion
+//multiply output times n
+output *= n;
+//invoke function using return 
+return factorial(n-1, output);
  
 };
+console.log(factorial(5));// 120
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-var sum = function(array) {
+//I: function takes an array of integers as param
+//O: return a number representing sum 
+//C: none
+//E: input arrays are empty, input arrays have one integer,have negative integers or mixed positive and negative integers 
+var sum = function(array, output = 0) {
+  //base
+  if(array.length === 0){
+    return output;
+  }
+  if(array.length === 1 && output === 0 ){
+   return array[0];
+  }
+  if(array.length === 0 && output === 0){
+    return 0;
+  }
+ 
+  //recursion
+  //add output to first index of array
+  output += array[0];
+  //invoke function changing input value to start at the next index
+  return sum(array.slice(1), output);
+
 };
+
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
@@ -19,18 +60,65 @@ var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
-var isEven = function(n) {
+//I: function takes a number as param 
+//O: return the boolean true if number is even, false if odd
+//C: cannot use modulo %
+//E:work with negative numbers
+
+var isEven = function(n, output = 0) {
+  //create a positive number for n 
+  n = Math.abs(n);
+  //base
+  if(n === 0){
+    return true;
+  }
+  if(n === 1){
+    return false;
+  }
+  //recursion
+  //invoke function
+  return isEven(n - 2);
+
 };
 
 // 5. Sum all integers below a given integer.
-// sumBelow(10); // 45
+// sumBelow(10); // 45 10+9+8+7+6+5+4+3+2+1
 // sumBelow(7); // 21
+//I: function takes number as param
+//O: number that is the sum of all the integers below the input number
+//C:none
+//E:none
 var sumBelow = function(n) {
+  //base
+  if(n === 5 ){
+    return
+  }
+  //recursion
+  n +=; 
+  return sumBelow(n-1);
+
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
+var range = function(x, y, output = []) {
+  //base
+  if(x + 1 === y){
+    return output;
+  } else if(x - 1 === y){
+    return output;
+  }
+
+  //recursion
+  if(x < y){
+    output.push(x + 1)
+    return range(x + 1, y, output)
+
+  } else if(y > x){
+    output.push(x - 1);
+    return range(x - 1, y, output)
+
+  }
 };
 
 // 7. Compute the exponent of a number.
