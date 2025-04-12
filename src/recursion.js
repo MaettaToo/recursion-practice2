@@ -88,21 +88,41 @@ var isEven = function(n, output = 0) {
 //O: number that is the sum of all the integers below the input number
 //C:none
 //E:none
-var sumBelow = function(n) {
+var sumBelow = function(n, output = 0) {
   //base
-  if(n === 5 ){
-    return
+  if(n === 0){
+    return 0;
   }
+  if(n - 1 === 0){
+    return output;
+    } else if (n + 1 === 0){
+    return output;
+ }
   //recursion
-  n +=; 
-  return sumBelow(n-1);
-
+  if( n > 0){
+  output += n - 1; 
+  return sumBelow(n - 1, output);
+  } 
+   if(n < 0){
+      output += n + 1; 
+      return sumBelow(n + 1, output);
+  }
+ 
 };
+console.log(sumBelow(10));
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
+//I: function takes param of 2 numbers
+//O: return an array of numbers that are between the two input number
+//C: none
+//E: should return empty array if no integers in range,
 var range = function(x, y, output = []) {
   //base
+  console.log(output);
+if(x === y){
+  return [];
+}
   if(x + 1 === y){
     return output;
   } else if(x - 1 === y){
@@ -113,12 +133,13 @@ var range = function(x, y, output = []) {
   if(x < y){
     output.push(x + 1)
     return range(x + 1, y, output)
-
-  } else if(y > x){
+    
+  } else if(x > y){
     output.push(x - 1);
     return range(x - 1, y, output)
 
   }
+  //console.log(range[2, 9]);
 };
 
 // 7. Compute the exponent of a number.
@@ -134,6 +155,9 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+
+  
 };
 
 // 9. Write a function that accepts a string a reverses it.
