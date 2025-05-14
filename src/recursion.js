@@ -174,7 +174,7 @@ var exponent = function(base, exp, output = 1) {
     output *= base;
     return (base, exp + 1, output);
   }
- console.log(output);
+ 
 
 };
 
