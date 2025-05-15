@@ -10,9 +10,12 @@ var factorial = function(n, output = 1) {
   //C: none
   //E: return null for negative numbers,
   //base
+  // conditional stmt if  n strictly equals 0
   if(n === 0){
+    //return output
     return output;
     };
+    // conditional stmt if n  is less than zero(negative) return null 
   if(n < 0 ){
     return null;
   };
@@ -25,7 +28,6 @@ output *= n;
 return factorial(n-1, output);
  
 };
-console.log(factorial(5));// 120
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
@@ -35,13 +37,18 @@ console.log(factorial(5));// 120
 //E: input arrays are empty, input arrays have one integer,have negative integers or mixed positive and negative integers 
 var sum = function(array, output = 0) {
   //base
+  // conditional stmt determine if array is empty using length property
   if(array.length === 0){
+    // return output
     return output;
   }
+  //conditional stmt determine if array has one element using length property and output is zero
   if(array.length === 1 && output === 0 ){
+    // return first index of array
    return array[0];
-  }
+  }// conditional stmt if array is empty and output is zero 
   if(array.length === 0 && output === 0){
+    //return 0
     return 0;
   }
  
@@ -69,14 +76,18 @@ var isEven = function(n, output = 0) {
   //create a positive number for n 
   n = Math.abs(n);
   //base
+  //conditional stmt n strictly equal to zero
   if(n === 0){
+    //return true
     return true;
   }
+  //conditional stmt n strictly equals 1
   if(n === 1){
+    //return false
     return false;
   }
   //recursion
-  //invoke function
+  //invoke function subtracting 2 from n 
   return isEven(n - 2);
 
 };
@@ -90,26 +101,35 @@ var isEven = function(n, output = 0) {
 //E:none
 var sumBelow = function(n, output = 0) {
   //base
+  //conditional stmt if n strictly equal 0
   if(n === 0){
+    //return zero
     return 0;
-  }
+  }// conditional stmt n-1 strictly zero
   if(n - 1 === 0){
+    //return output
     return output;
+    // conditional stmt  n plus one srictly equals zero 
     } else if (n + 1 === 0){
+      //return output
     return output;
  }
   //recursion
+  //conditional stmt n is greater than zero (positive )
   if( n > 0){
-  output += n - 1; 
+    // output should add the results of n minus one 
+  output += n - 1;
+  //start  recursion invoke function using n-1 and output  
   return sumBelow(n - 1, output);
-  } 
+  } //conditional stmt n is less than zero (negative)
    if(n < 0){
-      output += n + 1; 
+      output += n + 1; // output should add the results of n plus one 
+      //start  recursion invoke function using n+1 and output as params
       return sumBelow(n + 1, output);
   }
  
 };
-console.log(sumBelow(10));
+
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
@@ -119,27 +139,37 @@ console.log(sumBelow(10));
 //E: should return empty array if no integers in range,
 var range = function(x, y, output = []) {
   //base
-  console.log(output);
+  //conditional stmt x strictly to y 
 if(x === y){
+  // return empty array
   return [];
-}
+}//conditional stmt x plus one  strictly to y 
   if(x + 1 === y){
+    //return output
     return output;
+    //conditional stmt x minus one  strictly to y
   } else if(x - 1 === y){
+    //return output
     return output;
+    
   }
 
   //recursion
+  // conditional stmt determine if x is less than y 
   if(x < y){
+    //add x plus one to the output array
     output.push(x + 1)
+    //start recursion invoke funcion using x plus one, y and default param output
     return range(x + 1, y, output)
-    
+    // conditional stmt determine if x is greater than y 
   } else if(x > y){
+    //add x  minus one to the output array
     output.push(x - 1);
+    //start recursion invoke funcion using x minus one, y and default param output
     return range(x - 1, y, output)
 
   }
-  //console.log(range[2, 9]);
+  //console.log(range[2, 9]);test
 };
 
 // 7. Compute the exponent of a number.
@@ -153,28 +183,35 @@ var exponent = function(base, exp, output = 1) {
   //C: cannot use complex math
   //E: exp is 1 or exp is 0, or exp is negative
   //base
-  
+  // conditional stmt  if exp strictly equals 0
   if( exp === 0){
-    return 1
-  }
+    // return output
+    return output;
+  }//conditional stmt  if exp strictly equals 0
   if(exp === 1){
-    return base
-  }
-  if(exp > 0 || exp < 0){
+    // multiply output times base and reassign results to output 
+    output *= base;
+    //return output 
     return output;
   }
- 
+  
  
   //recursion
-  if (exp >= 2 || exp < 0){
-    output *= base;
-    return (base, exp - 1, output);
+ // use conditional stmt to determine if exp is negative or positive 
+  if (exp < 0){ 
+    // if negative assign a variable to contain results of turning base into a fraction (1 divided by base)
+     let negBase2 =(1 / base);
+     // assign output the results of multiplyin output by negbase2, confining decimals to 5 places and ensure return number
+     output = (output *= negBase2).toFixed(5) * 1;
+    //start recursion invoke function using base, exp + 1( add until exp becomes one or zero ) output
+    return exponent (base, exp + 1, output);
   }
-  if (exp < 0){
-    output *= base;
-    return (base, exp + 1, output);
+  else{// exp is positive 
+    output*= base // multiply output by base 
+    //start recursion invoke function using base, exp - 1( subtract until exp becomes one or zero ) output
+    return exponent(base, exp - 1, output);
   }
- 
+   
 
 };
 
@@ -183,10 +220,39 @@ var exponent = function(base, exp, output = 1) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //I: function takes one param number
+  //O: return boolean true or false if the input number is a power of two
+  //C: none
+  //E: if n is zero  
+  // base
+  // conditional stmt using Math square root method to determine the input number is a power of two 
+  console.log(Math.sqrt(n)) // test
+  // conditional test if n === 0 then return false 
+  if ( n === 0){
+    return false}
+     // conditional stmt using Math square root method to determine the input number is a power of two
+     // if the remainder of square root of n divided by 1 strictly equals 0 then return true   
+    if ((Math.sqrt(n)) % 1 === 0){
+      return true 
+      // return false 
+    } else{
+      return false 
+    }
 
 
-  
+ 
+
+
+  //recursion 
+  // start recursion invoke func using n as parameter
+  return powerOfTwo(n);
+
+
+
 };
+
+console.log(powerOfTwo(36));
+console.log(powerOfTwo(17));
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
