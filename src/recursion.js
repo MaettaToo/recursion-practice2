@@ -219,47 +219,58 @@ var exponent = function(base, exp, output = 1) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function(n) {
+var powerOfTwo = function(n, output = 1) {
   //I: function takes one param number
   //O: return boolean true or false if the input number is a power of two
   //C: none
-  //E: if n is zero  
+  //E: if n is zero, n is 1  
   // base
-  // conditional stmt using Math square root method to determine the input number is a power of two 
-  console.log(Math.sqrt(n)) // test
+
   // conditional test if n === 0 then return false 
   if ( n === 0){
     return false}
-     // conditional stmt using Math square root method to determine the input number is a power of two
-     // if the remainder of square root of n divided by 1 strictly equals 0 then return true   
-    if ((Math.sqrt(n)) % 1 === 0){
-      return true 
-      // return false 
-    } else{
-      return false 
-    }
+    // conditional stmt if n strictly equals one then return true   
+    if (n === 1){
+      return true}    
+
+     //recursion 
+  // start recursion invoke func using n divided by 2 as parameter
+    return powerOfTwo(n / 2)
+  };
 
 
- 
-
-
-  //recursion 
-  // start recursion invoke func using n as parameter
-  return powerOfTwo(n);
-
-
-
-};
-
-console.log(powerOfTwo(36));
-console.log(powerOfTwo(17));
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+//I: function takes two params input string and default param empty string
+//O: function should return input string in reverse 
+//C: no mutatiion of input string
+//E: none
+var reverse = function(string, output = '') {
+  //base
+  //conditional stmt if string is empty then return output
+  if(string.length === 0){
+    return output; 
+  };
+  //recursion
+  // add the last value of the string to the ouput variable using += and slice  
+  output += string.slice(-1);
+  // init recursion invoke function using the input string with the last value removed and output as params
+ return  reverse(string.slice(0, -1), output)
 };
 
 // 10. Write a function that determines if a string is a palindrome.
+//I: function takes a string as param 
+//O: return boolean true if inut string is palindrome, false if it is not
+//C: none 
+//E: spaces and capital letters 
 var palindrome = function(string) {
+  //base 
+  if(){};
+
+  //recursion
+  // use regex to remove all spaces from string,
+  palindrome(string)
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
