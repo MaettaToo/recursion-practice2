@@ -264,14 +264,28 @@ var reverse = function(string, output = '') {
 //C: none 
 //E: spaces and capital letters 
 var palindrome = function(string) {
-  //base 
-  if(){};
+  // use regex to remove all spaces from string,use to lowercase to turn string to lower
+  const reString = string.replace(' ', '').toLowerCase();
+  
+  //base
+  // return false if first index does not match  
+  if( reString[0] !== reString.slice(-1)){
+    return false;
+  };
+  // when string length is zero or one  return true 
+ if(reString.length === 0 || reString.length === 1){
+  return true;
+ };
 
   //recursion
-  // use regex to remove all spaces from string,
-  palindrome(string)
-
+   // conditional stmt to compare first index ih last index of string 
+   if (reString[0] === reString.slice(-1)){
+    // start recursion invoke function removing first index and last 
+      return palindrome(reString.slice(1, -1))
+   }
+   
 };
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -285,8 +299,24 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
-};
+var multiply = function(x, y, output = 0) {
+  
+  
+    if(y === 0){
+      return output;
+    };
+    
+    if( y > 0){
+      output += x;
+        return multiply(x, y - 1, output);
+    }
+    if(y < 0 && x < 0){
+      output += -x;
+        return multiply(x, y + 1, output);
+    }
+    
+  };
+  
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
@@ -308,16 +338,49 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  //I: function takes two params repped as string
+  //O: return boolean true if strings are identical 
+  //C: none
+  //E: none 
+  //base
+  // function stops when returns true, returns true when both strings are empty
+  if(str1.length === 0 && str2.length === 0){
+    return true;
+   }
+   // function returns false if index at str 1 does not match index 1 at str 2
+  if(str1[0] !== str2[0]){
+    return false;
+  }
+
+  // recursion
+  //init conditional stmt if first index of string 1 strictly equals first index of string 2 start recursion 
+  if(str1[0] === str2[0]){
+  return compareStr(str1.slice(1), str2.slice(1));
+  };
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
-};
+var createArray = function(str, output = []){
+  //I: function accepts a string as param and empty array as default param
+  //O: return input string as an array with each index of string as an index in the array
+  //C: none
+  //E: needs to be in exact same order
+  //base
+  // when string  length is zero
+  if(str.length === 0){
+    // return final results 
+    return output;
+  }
+  //recursion
+  // push the first index of sring to the output array
+ output.push(str[0]);
+ // start recursion invoke function  slicing the first index off the string  with ouput as params 
+  return createArray(str.slice(1), output);
+};//test
+console.log(createArray('hello'));// ['h','e','l','l','o']
 
-// 17. Reverse the order of an array
-var reverseArr = function (array) {
-};
+//17. reverse array
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
