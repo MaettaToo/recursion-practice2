@@ -381,6 +381,24 @@ var createArray = function(str, output = []){
 console.log(createArray('hello'));// ['h','e','l','l','o']
 
 //17. reverse array
+var reverseArr = function(str, output = []){
+  //I: function accepts a string as param and empty array as default param
+  //O: return input string as an array with each index of string as an index in the array
+  //C: none
+  //E: needs to be in reverse order
+  //base
+  // when string  length is zero
+  if(str.length === 0){
+    // return final results 
+    return output;
+  }
+  //recursion
+  // unshift the first index of sring to the output array
+ output.unshift(str[0]);
+ // start recursion invoke function  slicing the first index off the string  with ouput as params 
+  return reverseArr(str.slice(1), output);
+};//test
+console.log(reverseArr('hello'));// ['h','e','l','l','o']
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
