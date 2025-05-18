@@ -403,20 +403,71 @@ console.log(reverseArr('hello'));// ['h','e','l','l','o']
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, output = []) {
+  //I: function takes three param, first param is unknown value to fill array, 2nd param is number indicating length, default param empty array
+  //O: return an array with the unknown value as the index repeated until length is met
+  //C: none
+  //E: if input value is undefined 
+  //base 
+  // if length strictly equals 0
+  if(length === 0){
+    //return output
+    return output;   
+  };
+  // recursion 
+  // push value into the array
+  output.push(value);
+  //start recursion invoke function 
+  return buildList(value, length - 1 , output);  
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
-};
+//I: function takes 3 params, array, unknown value, default parameter repped as number
+//O: return number that represents the number of times input value appears in the array
+//C: none
+//E: none 
+  var countOccurrence = function(array, value, output = 0) {
+    //base
+    //recursion stops when array is empty
+    if(array.length === 0){
+      return output;
+    }
+    //recursion
+    //conditional stmt if first index of array strictly equals value 
+    if(array[0] === value){
+      // count plus 1
+      output += 1;
+    }
+    // start recursion invoke function return the array with first index removed, value and output 
+    return countOccurrence(array.slice(1), value, output);
+  };
+
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback, output=[]) {
-  
+    //I: function takes 3 params input array, callback function, default parameter repped as array
+  //O: return a new array with the input array changed by the callback function
+  //C: cannot use native methods 
+  //E: must not mutate the original array, 
+  //base
+  // recursion ends when array is empty;
+  if(array.length === 0){
+    //return output
+    return output 
+  };
+  //recursion
+  //invoke callback on each element of the array
+  let results = callback(array[0]);
+  //push the results into the output array 
+  output.push(results);
+  return rMap(array.slice(1), callback, output);
+
 };
+console.log(rMap([1,2,3], function(n){ return n * 2 }))///246
+  
 
 // 21. Write a function that counts the number of times a key occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
