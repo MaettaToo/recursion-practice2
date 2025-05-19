@@ -502,18 +502,69 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+   //I: function takes a param repped as a number indicating the location of the requested number in the array 
+  //O: return the number in the fibonacci array were input number is located 
+  //C: non
+  //E: 0 should return zero, and negative numbers should return null 
+  // base 
+  //if n is less than zero(negative) return null
+  if(n < 0){
+    return null;
+    }// if n strictly equals zero return zero
+   if (n === 0)
+        return 0;
+      // if n === 1 return one
+    if (n === 1)
+        return 1;
+  
+  
+  //recursion 
+  // start recursion invoke function on nthFibo (n-1) and nthFibo (n-2)
+  return nthFibo(n - 1) + nthFibo(n - 2);
 };
+
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, output = []) {
+   //I: function takes two params input, array of words and default param of output
+  //O: return an array of the input array capitalized 
+  //C: none
+  //E: all letters must be capitalized 
+  //base
+  // recursion ends when array is empty 
+  if(input.length === 0){
+    //return output 
+    return  output
+  }
+    //recursion
+  // push the firts index capitalized into the output array
+    output.push(input[0].toUpperCase());
+  // recursion begins invoke function using ouput and the input array slicing the first index
+    return capitalizeWords(input.slice(1), output);
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+var capitalizeFirst = function(array, output = []) {
+    //I: function takes two params array of strings and default param of output
+  //O: return an array of the input array capitalized 
+  //C: none
+  //E: all first letters must be capitalized 
+  //base
+  // recursion ends when array is empty 
+  if(array.length === 0){
+    //return output 
+    return  output
+  }
+    //recursion
+  // push the firts index capitalized into the output array
+    output.push(array[0][0].toUpperCase() + array[0].slice(1));
+  // recursion begins invoke function using ouput and the input array slicing the first index
+    return capitalizeFirst(array.slice(1), output);
 };
+
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
@@ -534,7 +585,28 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
+  //I: function takes two params input string and default prameter repped as object
+  //O: return object with the letters of the string as keys  and the number of times they appear ast the values
+  //C: none
+  //E: none
+  //base
+  // recursion ends when string is empty
+  if(str.length === 0){
+    return obj;
+    }
+  //recursion 
+  // determine if key exists in property 
+   if (!obj.hasOwnProperty(str[0])){
+      // add the key to the object if key does not exist  
+      obj[str[0]] = 1;
+        // if property exist count the value 
+      } else if(obj.hasOwnProperty(str[0])){
+        obj[str[0]] += 1; 
+      }
+      
+        // start recursion invoke function with string with first index removed and obj 
+  return letterTally (str.slice(1), obj);
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
