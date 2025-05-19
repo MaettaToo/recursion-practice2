@@ -621,24 +621,17 @@ var compress = function(list, output = []) {
     //C: order cannot be changed 
     //E: none 
     //base
+    //recursion ends when array is empty 
     if(list.length === 0){
       return output;
       }
     //recursion
-    //console.log(list[0], list[1])
     // conditional stmts, look at the first index of the array and the second index if they do not match 
-    // push the first index into the array, if they do match and output does not include the 
+    // push the first index into the output array
     if(list[0] !== list[1]){
-      //console.log('yay');
+      
      output.push(list[0]);
-      //console.log(output);
-   }else if(list[0] === list[1] && !output.includes(list[0])){
-      //console.log('bob');
-     output.push(list[0]);
-      //console.log(output)
-    }
-    //console.log(output);
-    //console.log(list.slice(1), output);
+   } // start recursion invoke function with first index removed from array and output 
     return compress(list.slice(1), output);
   };
 
@@ -652,14 +645,55 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, output = []) {
+  //I: function takes an array of numbers as input, default param as array 
+  //O: returns an array with consecutive zeros removed 
+  //C: order cannot be changed 
+  //E: none 
+    //base
+    //recursion ends when array is empty 
+    if(array.length === 0){
+      return output;
+      }
+    //recursion
+  //look at the first index of the array and the second index push the first index into the output array
+  if(array[0] !== array[1]){
+    output.push(array[0]);
+  }
+  
+  // start recursion invoke function with first index removed from array and output 
+    return minimizeZeroes(array.slice(1), output);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, output = []) {
+    //I: function takes an array of numbers and default param repped as array
+  //O: return an array of input array numbers with the numbers alteranating between positive an negative regardless     //of original sign
+  //C: array must start with positive numbers 
+  //E: none
+  //base
+  //conditional stmt recursion ends with the end of the input array
+  console.log(array);
+  console.log(array.length);
+  if(array.length === 0){
+    // return output 
+    console.log('yay');
+    return output; 
+  }
+  
+  //recursion
+  if(array[0] < 0){
+    output.push(-array[0]);
+  }
+  if(array[0] > 0){
+    output.push(array[0]);
+  }
+  // start recursion invoke function with first index removed from array and output  as params 
+  return alternateSign(array.slice[1], output);
+  
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
