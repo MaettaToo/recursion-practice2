@@ -700,7 +700,54 @@ var alternateSign = function(array, output = []) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
-};
+  var numToText = function(str, output = '') {
+    //I:function takes a string as param and default param is string
+    //O: return input string with numerals replaced with word string equivalents 
+    //C: none 
+    //E: none
+    const numToWords = {
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+    10: "ten",
+    }
+    //base
+    // recursion should end when the string ends,
+    if(str.length === 0){
+      return output 
+    }
+    
+    //recursion
+    if(typeof str[0] !== 'number'){
+      output += str[0];
+    }
+    // we want to determine if the string is a number, if it is a number does it match any of the numbers in the object
+    // replace withe the words
+    if (typeof str[0] === 'number'){
+      for(let key in numToWords){
+        if (key === str[0]){
+          output += str[0].replace(str[0], )
+        };
+      }
+        
+        }
+    // start recursion invoke function with first index removed from string and output as params 
+    return numToText(string.slice(1), output)
+    
+  };
+    
+    
+    
+    
+    
+  };
 
 // *** EXTRA CREDIT ***
 
