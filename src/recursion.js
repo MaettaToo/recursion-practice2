@@ -700,55 +700,60 @@ return alternateSign(array, output, count + 1);
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
-  var numToText = function(str, output = '') {
-    //I:function takes a string as param and default param is string
+var numToText = function(str, output = [], count = 0) {
+    //I:function takes 3 params, str(string), default param output empty array, count repped as num used to continue recursion
     //O: return input string with numerals replaced with word string equivalents 
     //C: none 
     //E: none
-    const numToWords = {
-    0: "zero",
-    1: "one",
-    2: "two",
-    3: "three",
-    4: "four",
-    5: "five",
-    6: "six",
-    7: "seven",
-    8: "eight",
-    9: "nine",
-    10: "ten",
-    }
+   // split string into array
+  const strArray = str.split(' ');
+  //console.log(strArray);
     //base
-    // recursion should end when the string ends,
-    if(str.length === 0){
-      return output 
+    // recursion should end when strArray length is strictly equal to output length,
+    if(strArray.length === output.length){
+      // return string 
+      //console.log('ken');
+      return output.join(' ');
     }
-    
-    //recursion
-    if(typeof str[0] !== 'number'){
-      output += str[0];
+      
+     //recursion 
+      // use switch determine number and to change num to text
+      switch (strArray[count]){
+          
+          case '0': output.push("zero");
+                    break;
+          case '1': output.push("one");
+                    break;
+          case '2': output.push("two");
+                    break;
+          case '3': output.push("three");
+                    break;
+          case '4': output.push("four");
+                    break;
+          case '5': output.push("five");
+                    break;
+          case '6': output.push("six");
+                    break;  
+          case '7': output.push("seven");
+                    break;
+          case '8': output.push("eight");
+                    break;
+          case '9': output.push("nine");
+                    break;
+          default : output.push(strArray[count]);
+   
     }
-    // we want to determine if the string is a number, if it is a number does it match any of the numbers in the object
-    // replace withe the words
-    if (typeof str[0] === 'number'){
-      for(let key in numToWords){
-        if (key === str[0]){
-          output += str[0].replace(str[0], )
-        };
-      }
-        
-        }
-    // start recursion invoke function with first index removed from string and output as params 
-    return numToText(string.slice(1), output)
+     // invoke function using converted array, output array and count as params 
+    return numToText(str, output, count + 1)
     
   };
+console.log(numToText("I have 5 dogs and 6 ponies")); // "I have five dogs and six ponies"
     
     
     
     
     
-  };
+
 
 // *** EXTRA CREDIT ***
 
